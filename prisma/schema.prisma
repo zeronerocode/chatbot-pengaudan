@@ -1,0 +1,23 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Pengaduan {
+  id          String   @id @default(uuid())
+  name        String
+  phone       String
+  type        String
+  details     String   @db.Text
+  ticketNumber String  @unique
+  status      String   @default("pending") // pending, processed, completed, rejected
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+} 
