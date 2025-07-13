@@ -24,7 +24,7 @@ export default function Header() {
   
   const navLinks: NavLink[] = [
     { name: 'Beranda', href: '/' },
-    { name: 'Profil', href: '#profil' },
+    { name: 'Profil', href: '/profil' },
     { name: 'Berita', href: '#berita' }
   ];
 

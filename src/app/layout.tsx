@@ -19,8 +19,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'Desa Kedungwungu - Beranda',
-  description: 'Website Resmi Desa Kedungwungu - Informasi dan layanan desa dalam genggaman.',
+  title: 'Desa Lhokawe - Beranda',
+  description: 'Website Resmi Desa Lhokawe - Informasi dan layanan desa dalam genggaman.',
 };
 
 export default function RootLayout({

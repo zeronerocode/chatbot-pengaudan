@@ -170,6 +170,7 @@ useEffect(() => {
                       <li><strong>Detail:</strong> {formData.details}</li>
                   </ul>
                   <p className="mt-2">Apakah semua data di atas sudah benar? (Ketik <strong>Ya</strong> untuk konfirmasi)</p>
+                  <p className="mt-2">Atau silahkan hubungi admin jika ada yang perlu diperbaiki. <a href="https://wa.me/1234567890" className="text-blue-500">wa.me/1234567890</a></p>
               </div>
           );
           botReply(confirmationText);
