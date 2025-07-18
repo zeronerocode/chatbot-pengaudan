@@ -4,7 +4,8 @@ import React from 'react';
 import { Inbox, Loader2, CheckCircle2 } from 'lucide-react';
 import type { FC, ReactNode } from 'react';
 import type { Pengaduan } from '@prisma/client';
-import UpdateStatusButton from './UpdateStatusButton'; // Impor komponen baru
+import UpdateStatusButton from './UpdateStatusButton';
+import UpdateResultModal from './UpdateResultModal'; // Impor komponen baru
 
 // --- Tipe Data ---
 interface StatCardProps {
@@ -59,10 +60,9 @@ const DataTable: FC<{ data: Pengaduan[] }> = ({ data }) => (
                     <tr>
                         <th className="p-4 font-semibold text-gray-600">No. Tiket</th>
                         <th className="p-4 font-semibold text-gray-600">Nama Pelapor</th>
-                        <th className="p-4 font-semibold text-gray-600">Kontak</th>
                         <th className="p-4 font-semibold text-gray-600">Tanggal</th>
-                        <th className="p-4 font-semibold text-gray-600">Jenis</th>
                         <th className="p-4 font-semibold text-gray-600">Status</th>
+                        <th className="p-4 font-semibold text-gray-600">Hasil</th>
                         <th className="p-4 font-semibold text-gray-600 text-center">Aksi</th>
                     </tr>
                 </thead>
@@ -71,12 +71,14 @@ const DataTable: FC<{ data: Pengaduan[] }> = ({ data }) => (
                         <tr key={row.id} className="border-b border-gray-100 hover:bg-gray-50">
                             <td className="p-4 font-mono text-xs">{row.ticketNumber}</td>
                             <td className="p-4">{row.name}</td>
-                            <td className="p-4">{row.phone}</td>
                             <td className="p-4">{new Date(row.createdAt).toLocaleDateString('id-ID')}</td>
-                            <td className="p-4">{row.type}</td>
                             <td className="p-4"><StatusBadge status={row.status as ReportStatus} /></td>
-                            <td className="p-4 text-center">
-                                <UpdateStatusButton pengaduan={row} />
+                            <td className="p-4 text-sm text-gray-600 max-w-xs truncate">{row.result || '-'}</td>
+                            <td className="p-4">
+                                <div className="flex justify-center items-center gap-2">
+                                    <UpdateStatusButton pengaduan={row} />
+                                    <UpdateResultModal pengaduan={row} />
+                                </div>
                             </td>
                         </tr>
                     ))}

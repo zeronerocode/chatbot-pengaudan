@@ -1,8 +1,11 @@
 import type { NextPage } from 'next';
+import Header from '@/components/Header';
 
 const ProfilPage: NextPage = () => {
   return (
-    <div className="bg-white p-8 rounded-xl shadow-lg max-w-4xl mx-auto">
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <div className="bg-white p-8 rounded-xl shadow-lg max-w-4xl mx-auto">
       <h1 className="text-3xl font-bold text-gray-800 mb-6 border-b pb-4">Profil Instansi</h1>
       <div className="space-y-6 text-gray-700">
         <div>
@@ -31,6 +34,7 @@ const ProfilPage: NextPage = () => {
           </ul>
         </div>
       </div>
+    </div>
     </div>
   );
 }

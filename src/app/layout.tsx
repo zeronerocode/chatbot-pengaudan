@@ -1,8 +1,5 @@
 import type { Metadata } from 'next';
 import { Inter, Poppins } from 'next/font/google';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import AOSInitializer from '@/components/AOSInitializer';
 import './globals.css';
 
 const inter = Inter({
@@ -19,8 +16,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'Desa Lhokawe - Beranda',
-  description: 'Website Resmi Desa Lhokawe - Informasi dan layanan desa dalam genggaman.',
+  title: 'Desa Lhok Awee',
+  description: 'Website Resmi Desa Lhok Awee - Informasi dan layanan desa dalam genggaman.',
 };
 
 export default function RootLayout({
@@ -30,13 +27,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" className={`${inter.variable} ${poppins.variable} scroll-smooth`}>
-      <body className="bg-gray-50 font-sans">
-        <AOSInitializer />
-        <div className="min-h-screen flex flex-col">
-          <Header />
-          <main className="flex-grow">{children}</main>
-          <Footer />
-        </div>
+      <body className="bg-gray-100 font-sans">
+        {children}
       </body>
     </html>
   );

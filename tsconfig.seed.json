@@ -1,0 +1,9 @@
+// FILE: tsconfig.seed.json
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "target": "esnext",
+    "moduleResolution": "node"
+  }
+}
