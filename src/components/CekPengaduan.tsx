@@ -41,6 +41,7 @@ export default function CekPengaduan() {
             const data: Pengaduan = await response.json();
             setPengaduan(data);
             setStatus('success');
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (err: any) {
             setError(err.message);
             setStatus('error');

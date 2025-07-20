@@ -2,8 +2,8 @@ import Sidebar from "@/components/admin/Sidebar";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Admin Dashboard | Desa Kedungwungu",
-    description: "Halaman administrasi untuk website Desa Kedungwungu.",
+    title: "Admin Dashboard ",
+    description: "Halaman administrasi untuk website Desa Lhok Awe Teungoh.",
 };
 
 export default function AdminLayout({

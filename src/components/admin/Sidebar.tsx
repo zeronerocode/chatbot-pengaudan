@@ -2,13 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, FileText, Users, BarChart3, LogOut } from 'lucide-react';
+import { LayoutDashboard,LogOut } from 'lucide-react';
 
 const navItems = [
     { href: '/admin', icon: LayoutDashboard, label: 'Dashboard' },
-    { href: '/admin/pengaduan', icon: FileText, label: 'Pengaduan' },
-    { href: '/admin/pengguna', icon: Users, label: 'Pengguna' },
-    { href: '/admin/laporan', icon: BarChart3, label: 'Laporan' },
 ];
 
 export default function Sidebar() {

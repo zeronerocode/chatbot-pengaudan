@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client"; // <-- INI SANGAT PENTING untuk komponen interaktif di App Router
 
 import { useState, useEffect, useRef } from 'react';

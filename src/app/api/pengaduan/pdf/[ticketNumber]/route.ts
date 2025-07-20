@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextResponse } from 'next/server';
-import {prisma} from '@/lib/db';
+import { prisma } from '@/lib/db';
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
+import fs from 'fs';
+import path from 'path';
 
 export async function GET(
   request: Request,
@@ -20,20 +23,73 @@ export async function GET(
     const pdfDoc = await PDFDocument.create();
     const page = pdfDoc.addPage();
     const { width, height } = page.getSize();
-    
+
     const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
     const boldFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
-    
-    let y = height - 50;
+
+    // --- Kop Surat dan Logo ---
+    // Path logo (misal: public/logo.png)
+    const logoPath = path.join(process.cwd(), 'public', '/images/logo_kab_bireuen.png');
+    const logoBytes = fs.readFileSync(logoPath);
+    const logoImage = await pdfDoc.embedPng(logoBytes);
+    const logoDims = logoImage.scale(0.15);
+
+    // Draw logo
+    page.drawImage(logoImage, {
+      x: 50,
+      y: height - 80,
+      width: logoDims.width,
+      height: logoDims.height,
+    });
+
+    // Kop surat
+    page.drawText('PEMERINTAH KABUPATEN BIREUEN', {
+      x: 120,
+      y: height - 50,
+      font: boldFont,
+      size: 13,
+      color: rgb(0, 0, 0),
+    });
+    page.drawText('KECAMATAN KOTA JUANG', {
+      x: 120,
+      y: height - 68,
+      font: boldFont,
+      size: 12,
+      color: rgb(0, 0, 0),
+    });
+    page.drawText('GAMPONG LHOK AWEE', {
+      x: 120,
+      y: height - 86,
+      font: boldFont,
+      size: 12,
+      color: rgb(0, 0, 0),
+    });
+    page.drawText('Alamat: Jl. Banda Aceh - Meulaboh, Lhoknga, Aceh Besar', {
+      x: 120,
+      y: height - 104,
+      font: font,
+      size: 10,
+      color: rgb(0, 0, 0),
+    });
+
+    // Garis bawah kop surat
+    page.drawLine({
+      start: { x: 50, y: height - 115 },
+      end: { x: width - 50, y: height - 115 },
+      thickness: 2,
+      color: rgb(0, 0, 0),
+    });
+
+    let y = height - 140;
 
     const drawText = (text: string, x: number, yPos: number, options: { font?: any, size?: number, color?: any } = {}) => {
-        page.drawText(text, {
-            x,
-            y: yPos,
-            font: options.font || font,
-            size: options.size || 11,
-            color: options.color || rgb(0, 0, 0),
-        });
+      page.drawText(text, {
+        x,
+        y: yPos,
+        font: options.font || font,
+        size: options.size || 11,
+        color: options.color || rgb(0, 0, 0),
+      });
     };
 
     drawText('Bukti Pengaduan Desa Lhok Awee', 50, y, { font: boldFont, size: 18 });
@@ -43,9 +99,9 @@ export async function GET(
     y -= 20;
 
     const drawField = (label: string, value: string) => {
-        drawText(label, 50, y, { font: boldFont });
-        drawText(value, 180, y);
-        y -= 20;
+      drawText(label, 50, y, { font: boldFont });
+      drawText(value, 180, y);
+      y -= 20;
     };
 
     drawField('Nomor Tiket', pengaduan.ticketNumber);
@@ -54,26 +110,26 @@ export async function GET(
     drawField('No. Telepon', pengaduan.phone);
     drawField('Jenis Pengaduan', pengaduan.type);
     drawField('Status', pengaduan.status);
-    
+
     y -= 5;
     drawText('Detail Pengaduan:', 50, y, { font: boldFont });
     y -= 15;
     // Word wrapping manual
     const detailsLines = pengaduan.details.match(/.{1,80}/g) || [];
     detailsLines.forEach(line => {
-        drawText(line, 50, y);
-        y -= 15;
+      drawText(line, 50, y);
+      y -= 15;
     });
 
     if (pengaduan.result) {
-        y -= 5;
-        drawText('Hasil Tindak Lanjut:', 50, y, { font: boldFont });
+      y -= 5;
+      drawText('Hasil Tindak Lanjut:', 50, y, { font: boldFont });
+      y -= 15;
+      const resultLines = pengaduan.result.match(/.{1,80}/g) || [];
+      resultLines.forEach(line => {
+        drawText(line, 50, y);
         y -= 15;
-        const resultLines = pengaduan.result.match(/.{1,80}/g) || [];
-        resultLines.forEach(line => {
-            drawText(line, 50, y);
-            y -= 15;
-        });
+      });
     }
 
     const pdfBytes = await pdfDoc.save();

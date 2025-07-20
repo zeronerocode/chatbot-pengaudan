@@ -1,5 +1,4 @@
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa';
-import Link from 'next/link';
 
 export default function Footer() {
     return (
@@ -10,28 +9,28 @@ export default function Footer() {
                         <h3 className="text-lg font-semibold">Desa Kedungwungu</h3>
                         <p className="mt-4 text-sm text-gray-400">Website resmi pemerintah Desa Kedungwungu, Kecamatan Krangkeng, Kabupaten Indramayu.</p>
                         <div className="flex space-x-4 mt-4">
-                            <Link href="#" className="text-gray-400 hover:text-white"><FaFacebookF /></Link>
-                            <Link href="#" className="text-gray-400 hover:text-white"><FaTwitter /></Link>
-                            <Link href="#" className="text-gray-400 hover:text-white"><FaInstagram /></Link>
-                            <Link href="#" className="text-gray-400 hover:text-white"><FaYoutube /></Link>
+                            <span className="text-gray-400 hover:text-white cursor-default"><FaFacebookF /></span>
+                            <span className="text-gray-400 hover:text-white cursor-default"><FaTwitter /></span>
+                            <span className="text-gray-400 hover:text-white cursor-default"><FaInstagram /></span>
+                            <span className="text-gray-400 hover:text-white cursor-default"><FaYoutube /></span>
                         </div>
                     </div>
                     <div>
                         <h3 className="text-sm font-semibold tracking-wider uppercase">Akses Cepat</h3>
                         <ul className="mt-4 space-y-2">
-                            <li><Link href="#profil" className="text-sm text-gray-400 hover:text-white transition">Profil Desa</Link></li>
-                            <li><Link href="#berita" className="text-sm text-gray-400 hover:text-white transition">Berita Desa</Link></li>
-                            <li><Link href="#layanan" className="text-sm text-gray-400 hover:text-white transition">Layanan Publik</Link></li>
-                            <li><Link href="#statistik" className="text-sm text-gray-400 hover:text-white transition">Data Statistik</Link></li>
+                            <li><span className="text-sm text-gray-400">Profil Desa</span></li>
+                            <li><span className="text-sm text-gray-400">Berita Desa</span></li>
+                            <li><span className="text-sm text-gray-400">Layanan Publik</span></li>
+                            <li><span className="text-sm text-gray-400">Data Statistik</span></li>
                         </ul>
                     </div>
                      <div>
                         <h3 className="text-sm font-semibold tracking-wider uppercase">Layanan Unggulan</h3>
                         <ul className="mt-4 space-y-2">
-                            <li><Link href="#" className="text-sm text-gray-400 hover:text-white transition">Surat Keterangan Usaha</Link></li>
-                            <li><Link href="#" className="text-sm text-gray-400 hover:text-white transition">Surat Keterangan Domisili</Link></li>
-                            <li><Link href="#" className="text-sm text-gray-400 hover:text-white transition">Pendaftaran KTP</Link></li>
-                            <li><Link href="#" className="text-sm text-gray-400 hover:text-white transition">Laporan Pengaduan</Link></li>
+                            <li><span className="text-sm text-gray-400">Surat Keterangan Usaha</span></li>
+                            <li><span className="text-sm text-gray-400">Surat Keterangan Domisili</span></li>
+                            <li><span className="text-sm text-gray-400">Pendaftaran KTP</span></li>
+                            <li><span className="text-sm text-gray-400">Laporan Pengaduan</span></li>
                         </ul>
                     </div>
                      <div>

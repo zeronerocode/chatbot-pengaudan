@@ -1,6 +1,5 @@
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
-import BeritaSection from '@/components/BeritaSection';
 import Footer from '@/components/Footer';
 import AOSInitializer from '@/components/AOSInitializer';
 
